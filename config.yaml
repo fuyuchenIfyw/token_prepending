@@ -1,0 +1,124 @@
+# config.yaml
+# support multiple models and configurations
+
+# default config name
+default_config: llama-2-7b
+
+# GPU config
+gpu_config:
+  cuda_visible_devices: "0,1"
+
+# model config list
+# Add new models here
+models:
+  # Llama-2-7b vanilla mode
+  llama-2-7b:
+    model_name_or_path: "/tos-bjml-ai4chem/fuyuchen/llm_weights/Llama-2-7b-hf"
+    use_which_plan: vanilla
+    output_layer: -1
+    tp_starting_index: 0  # not used in vanilla mode
+    tp_exiting_index: 0   # not used in vanilla mode
+    batch_size: 16
+    mode: test
+    task_set: sts
+    prompt_method: prompteol
+
+  # Llama-2-7b TP mode
+  llama-2-7b-tp:
+    model_name_or_path: "/tos-bjml-ai4chem/fuyuchen/llm_weights/Llama-2-7b-hf"
+    use_which_plan: tp
+    output_layer: 27
+    tp_starting_index: 1
+    tp_exiting_index: 7
+    batch_size: 16
+    mode: test
+    task_set: sts
+    prompt_method: prompteol
+
+  llama-2-13b:
+    model_name_or_path: "/tos-bjml-ai4chem/fuyuchen/llm_weights/Llama-2-7b-hf"
+    use_which_plan: vanilla
+    output_layer: -1
+    tp_starting_index: 0  
+    tp_exiting_index: 0   
+    batch_size: 16
+    mode: test
+    task_set: sts
+    prompt_method: cot
+
+  llama-2-13b-tp:
+    model_name_or_path: "/tos-bjml-ai4chem/fuyuchen/llm_weights/Llama-2-7b-hf"
+    use_which_plan: tp
+    output_layer: -2
+    tp_starting_index: 1
+    tp_exiting_index: 7
+    batch_size: 16
+    mode: test
+    task_set: sts
+    prompt_method: cot
+
+  llama-3-8b:
+    model_name_or_path: "/tos-bjml-ai4chem/fuyuchen/llm_weights/Llama-2-7b-hf"
+    use_which_plan: vanilla
+    output_layer: -1
+    tp_starting_index: 0  
+    tp_exiting_index: 0   
+    batch_size: 16
+    mode: test
+    task_set: sts
+    prompt_method: cot
+
+  llama-3-8b-tp:
+    model_name_or_path: "/tos-bjml-ai4chem/fuyuchen/llm_weights/Llama-2-7b-hf"
+    use_which_plan: tp
+    output_layer: -2
+    tp_starting_index: 1
+    tp_exiting_index: 3
+    batch_size: 16
+    mode: test
+    task_set: sts
+    prompt_method: cot
+
+  qwen2-7b:
+    model_name_or_path: "/path/to/qwen2-7b"
+    use_which_plan: vanilla
+    output_layer: -1
+    tp_starting_index: 0  
+    tp_exiting_index: 0   
+    batch_size: 16
+    mode: test
+    task_set: sts
+    prompt_method: cot
+
+  qwen2-7b-tp:
+    model_name_or_path: "/path/to/qwen2-7b"
+    use_which_plan: tp
+    output_layer: -2
+    tp_starting_index: 1
+    tp_exiting_index: 6
+    batch_size: 16
+    mode: test
+    task_set: sts
+    prompt_method: cot
+
+  gemma2-9b:
+    model_name_or_path: "/tos-bjml-ai4chem/fuyuchen/llm_weights/gemma-2-9b"
+    use_which_plan: vanilla
+    output_layer: -1
+    tp_starting_index: 0  
+    tp_exiting_index: 0   
+    batch_size: 16
+    mode: test
+    task_set: sts
+    prompt_method: cot
+
+  gemma2-9b-tp:
+    model_name_or_path: "/tos-bjml-ai4chem/fuyuchen/llm_weights/gemma-2-9b"
+    use_which_plan: tp
+    output_layer: -2
+    tp_starting_index: 1
+    tp_exiting_index: 6
+    batch_size: 16
+    mode: test
+    task_set: sts
+    prompt_method: cot
